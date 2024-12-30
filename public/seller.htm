@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seller Page</title>
+  <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.form-section, .display-section {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+input, textarea, button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.item-card {
+  display: flex;
+  gap: 20px;
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.item-image {
+  max-width: 150px;
+  border-radius: 8px;
+}
+
+.item-details {
+  flex: 1;
+}
+
+  </style>
+</head>
+<body>
+  <div class="form-section">
+    <h2>Provide inforamtion About Your Item</h2>
+    <form id="itemForm" action="/sell" method="POST" enctype="multipart/form-data">
+      <label for="itemName">Item Name:</label>
+      <input type="text" id="itemName" name="itemName" required>
+
+      <label for="itemPrice">Price: (in dollar $)</label>
+      <input type="number" id="itemPrice" name="itemPrice" required>
+
+      <label for="itemAddress">Address:   (90 words max)</label>
+      <input type="text" id="itemAddress" maxlength="99" name="itemAddress" required>
+
+      <label for="itemImage">Image :(must be less than 1MB in size)</label>
+      <input type="file" id="itemImage" name="itemImage" required>
+
+      <label for="itemDescription">Description:   (90 words max)</label>
+      <textarea id="itemDescription" name="itemDescription" maxlength="99" rows="4" required></textarea>
+
+      <label for="itemType">Type:</label>
+      <input type="text" id="itemType" name="itemType" required>
+
+      <button type="submit">Add Item</button>
+    </form>
+  </div>
+
+  <script>
+document.getElementById("itemImage").addEventListener("change", function(event) {
+  const file = event.target.files[0]; // Get the selected file
+  const maxSize = 1 * 1024 * 1024; // 1MB in bytes
+
+  const errorElement = document.getElementById("error");
+
+  if (file && file.size > maxSize) {
+    // If file size exceeds 1MB
+    errorElement.style.display = "block"; // Show error message
+    event.target.value = ""; // Clear the file input
+  } else {
+    errorElement.style.display = "none"; // Hide error message
+  }
+});
+
+document.getElementById("itemForm").addEventListener("submit", function(event) {
+  const fileInput = document.getElementById("itemImage");
+  if (!fileInput.value) {
+    // Prevent form submission if no valid file is selected
+    event.preventDefault();
+    alert("Please select a valid file under 1MB.");
+  }
+});
+
+
+
+  </script>
+</body>
+</html>

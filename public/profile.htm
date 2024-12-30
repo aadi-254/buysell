@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .profile-container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-header img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .profile-header h2 {
+            font-size: 2em;
+            color: #2575fc;
+        }
+
+        .profile-header p {
+            font-size: 1.2em;
+            color: #777;
+        }
+
+        .profile-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .profile-details div {
+            width: 45%;
+        }
+
+        .profile-details h3 {
+            font-size: 1.5em;
+            color: #2575fc;
+            margin-bottom: 10px;
+        }
+
+        .profile-details p {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .products-section {
+            margin-top: 50px;
+        }
+
+        .products-section h3 {
+            font-size: 1.8em;
+            color: #2575fc;
+            margin-bottom: 20px;
+        }
+
+        .product-card {
+            display: inline-block;
+            width: 220px;
+            margin: 10px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .product-card h4 {
+            font-size: 1.2em;
+            color: #2575fc;
+            margin-bottom: 10px;
+        }
+
+        .product-card p {
+            font-size: 1em;
+            color: #777;
+        }
+
+        .logout-button {
+            background-color: #ff4c4c;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+        }
+
+        .logout-button:hover {
+            background-color: #e03c3c;
+        }
+    </style>
+
+
+    <script>
+        async function fetchProfile() {
+            try {
+                // Make a GET request to the '/profile' API endpoint
+                const response = await fetch('/profile');
+                console.log(response);
+                // Check if the response is successful
+                if (!response.ok) {
+                    throw new Error('User is not logged in');
+                }
+
+                const userData = await response.json();
+                let a= userData[0];
+                console.log(userData);
+
+
+            document.getElementById("profile-header").innerHTML = `
+                <h2>${a.username}</h2>
+                <p>Welcome to your profile page!</p>
+            `
+                document.getElementById("profile-details").innerHTML = `
+            <div>
+                <h3>Personal Info</h3>
+                <p>Email: ${a.email}</p>
+                <p>Location: ${a.address}</p>
+                <p>Member Since: ${a.date_time}</p>
+                <p>Mobile : ${a.mobile_no}</p>
+            </div>
+            <div>
+                <h3>About You</h3>
+                <p>Hello! I’m ${a.username}, an avid traveler and tech enthusiast. I love exploring new places and sharing my finds with others. If you're looking for great products at great prices, you're in the right place!</p>
+                <a href="/seller.htm"
+                style="padding: 10px;
+                font-size: 18px;text-decoration: none;color: white;background-color: #2575fc;"
+                >Add item to sell</a>
+            </div>
+                `
+
+
+                document.getElementById("products-section").innerHTML = 
+                userData.map(product => `
+                <div class="product-card">
+                    <img src="${product.image || 'https://via.placeholder.com/200'}" alt="${product.name}">
+                    <a href="/product.htm?id=${product.item_id}" style="text-decoration: none; color: black;">
+                        <h3>${product.item_name}</h3>
+                    </a>
+                    <p>$${product.price}</p>
+                </div>
+            `).join('');
+                
+            } catch (error) {
+                console.error('Error fetching profile data:', error);
+                // Handle error (e.g., show a message to the user)
+                document.getElementById('error').innerText = 'Failed to load profile data. Please log in.';
+            }
+        }
+
+        // Call the fetchProfile function when the page loads
+        window.onload = fetchProfile;
+    </script>
+
+</head>
+
+<body>
+
+    <div class="profile-container" id="profile-container">
+        <!-- Profile Header -->
+        <div class="profile-header" id="profile-header">
+
+        </div>
+
+        <!-- Profile Details -->
+        <div class="profile-details" id="profile-details">
+            
+        </div>
+        <h3>Your Products for Sale</h3>
+        <!-- Products Section -->
+        <div class="products-section" id="products-section">
+
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>

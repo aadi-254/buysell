@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 10px;
+            width: 350px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-container label {
+            display: block;
+            margin-bottom: 2px;
+            font-weight: bold;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background: #2575fc;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .login-container button:hover {
+            background: #1a59c8;
+        }
+
+        .login-container p {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .login-container a {
+            color: #fff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container" id="main">
+        <h2>Login</h2>
+        <form action="/login" method="POST">
+            <label for="email">Email</label>
+            <input name="email" type="email" id="login-email" placeholder="Enter your email" required>
+            
+            <label for="password">Password</label>
+            <input name="password" type="password" id="login-password" placeholder="Enter your password" required>
+        
+            <button type="submit">Login</button>
+        </form>
+        
+        <p>Don't have an account? <button id="sign">Sign up</button></p>
+    </div>
+
+
+    <script>
+        let a = document.getElementById("sign");
+a.addEventListener('click', () => {
+    document.getElementById('main').innerHTML = `
+        <h2>Sign Up</h2>
+        <form action="/sign" method="POST" >
+            <label for="email">Email</label>
+            <input name="email" type="email" id="signup-email" placeholder="Enter your email" required>
+            
+            <label for="Username">Username</label>
+            <input name="username" type="text" id="Username" placeholder="Enter your Username" required>
+
+
+            <label for="password">Password</label>
+            <input name="password" type="password" id="signup-password" placeholder="Enter your password" required>
+
+            <label for="mobile">Mobile no</label>
+            <input name="mobile" type="number" id="Mobile" placeholder="Enter your Mobile no" required>
+
+            <label for="address">country and state</label>
+            <input name="address" type="text" id="login-password" placeholder="ex. India - Delhi" required>
+            <button type="submit">Sign Up</button>
+        </form>
+    `;
+
+    document.getElementById("login").addEventListener('click', () => {
+        document.getElementById('main').innerHTML = `
+            <h2>Login</h2>
+            <form action="/login" method="POST">
+                <label for="email">Email</label>
+                <input name="email" type="email" id="login-email" placeholder="Enter your email" required>
+                
+                <label for="password">Password</label>
+                <input name="password" type="password" id="login-password" placeholder="Enter your password" required>
+
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <button id="sign">Sign up</button></p>
+        `;
+
+        // Reattach event listener to the signup button after re-rendering
+        document.getElementById("sign").addEventListener('click', a.click);
+    });
+});
+
+    </script>
+</body>
+</html>

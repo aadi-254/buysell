@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Virtual Marketplace</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: #2575fc;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .intro-text {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.7;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-buttons {
+            margin-top: 30px;
+        }
+
+        .cta-buttons .b {
+            padding: 15px 40px;
+            background-color: #2575fc;
+            color: #fff;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .cta-buttons .b:hover {
+            background-color: #1a59c8;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .feature-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5em;
+            color: #2575fc;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 1em;
+            color: #777;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-direction: row-reverse;
+            align-items: center;
+            margin: 50px 0;
+            width: 80%;
+        }
+
+        .content-text {
+            max-width: 600px;
+        }
+
+      
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to Virtual Marketplace</h1>
+    <h2>Your gateway to secure, seamless, and exciting peer-to-peer transactions.</h2>
+
+    <p class="intro-text">Join our marketplace to experience the power of community-driven e-commerce. Buy and sell products with ease, communicate with buyers and sellers in real-time, and enjoy secure payments using Stripe integration. Whether you’re a buyer or seller, this platform is designed to make online transactions more engaging and trustworthy.</p>
+
+    <div class="cta-buttons">
+    <a class="b" href="/login.htm" >Get started</a>
+    </div>
+
+    <div class="features">
+        <div class="feature-card">
+            <img src="/images/i3.png" alt="Secure Payments">
+            <h3>Secure Payments</h3>
+            <p>Powered by Stripe, all transactions are encrypted for your peace of mind.</p>
+        </div>
+        <div class="feature-card">
+            <img src="/images/i1.png" alt="Real-Time Communication">
+            <h3>Real-Time Chat</h3>
+            <p>Connect instantly with buyers and sellers to discuss deals and ask questions.</p>
+        </div>
+        <div class="feature-card">
+            <img src="/images/i2.png" alt="Easy Login/Signup">
+            <h3>Easy Sign Up</h3>
+            <p>Get started quickly with our simple sign-up process and join the marketplace.</p>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="content-text">
+            <h2>How It Works</h2>
+            <p class="intro-text">The Virtual Marketplace allows users to easily register, list products for sale, and securely make purchases using Stripe. As a seller, you can manage your inventory, and as a buyer, you can browse and contact sellers in real-time to get the best deals.</p>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+    </script>
+
+</body>
+</html>
